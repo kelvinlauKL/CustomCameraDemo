@@ -13,9 +13,15 @@ class ViewController: UIViewController {
   @IBOutlet fileprivate var previewView: PreviewView! {
     didSet {
       previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+      previewView.clipsToBounds = true
     }
   }
-  @IBOutlet fileprivate var imageView: UIImageView!
+  
+  @IBOutlet fileprivate var imageView: UIImageView! {
+    didSet {
+      imageView.clipsToBounds = true
+    }
+  }
   
   fileprivate let session: AVCaptureSession = {
     let session = AVCaptureSession()
@@ -65,6 +71,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
 private extension ViewController {
   @IBAction func capturePhoto() {
     let captureSettings = AVCapturePhotoSettings()
+    captureSettings.isAutoStillImageStabilizationEnabled = true
     output.capturePhoto(with: captureSettings, delegate: self)
   }
 }
