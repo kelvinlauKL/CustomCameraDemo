@@ -12,14 +12,14 @@ import AVFoundation
 class ViewController: UIViewController {
   @IBOutlet fileprivate var previewView: PreviewView! {
     didSet {
-//      previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-//      previewView.clipsToBounds = true
+      previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+      previewView.clipsToBounds = true
     }
   }
   
   @IBOutlet fileprivate var imageView: UIImageView! {
     didSet {
-//      imageView.clipsToBounds = true
+      imageView.clipsToBounds = true
     }
   }
   

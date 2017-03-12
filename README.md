@@ -154,4 +154,94 @@ Build and run, and check out your screen:
 
 ![firstScreen](images/firstBuildScreenshot.PNG)
 
+### Configuring the UI
+
+The `PreviewView` doesn't look good. Let's fix that and have the preview span the entire top half of the screen. Find the `IBOutlet`s that you created earlier and update them to the following:
+
+```swift
+@IBOutlet fileprivate var previewView: PreviewView! {
+  didSet {
+
+    // 1
+    previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+
+    // 2
+    previewView.clipsToBounds = true
+  }
+}
+
+@IBOutlet fileprivate var imageView: UIImageView! {
+  didSet {
+    imageView.clipsToBounds = true
+  }
+}
+```
+
+1. Recall that the `videoPreviewLayer` is the `AVCaptureVideoPreviewLayer` that handles the presentation of the iPhone camera's view. You modify the `videoGravity` of that to `AVLayerVideoGravityResizeAspectFill`, AKA span the whole view.
+
+2. The preview view can present the video feed beyond the bounds of it's view. Set `clipsToBounds` to fix that. (Try deleting that line to see what happens)
+
+Build and run again to check things out.
+
+### Adding Image Capture
+
+In iOS 10, a new delegate named `AVCapturePhotoCaptureDelegate` is responsible for handing back information from an image capture request. 
+
+At the bottom of `ViewController.swift`, add the following extension:
+
+```swift
+// MARK: - AVCapturePhotoCaptureDelegate
+extension ViewController: AVCapturePhotoCaptureDelegate {
+    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+
+    // 1
+    guard let sampleBuffer = photoSampleBuffer else { fatalError("sample buffer was nil") }
+
+    // 2
+    guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: nil) else { fatalError("could not get image data from sample buffer.") }
+
+    // 3
+    imageView.image = UIImage(data: imageData)
+  }
+	
+}
+```
+
+There are many callbacks that `AVCapturePhotoCaptureDelegate` provides, but all of them are optional. Some are required depending on the context of the image capture request. For this demo, you'll only care about taking a photo with default settings, and this method will pass back the data required to reconstruct the captured image.
+
+Here's what happened here:
+
+1. The `photoSampleBuffer` is an optional that contains the image buffer required to reconstruct the image. 
+
+2. Using the `photoSampleBuffer`, you can recreate the image in `Data` form by using a class method from `AVCapturePhotoOutput`
+
+3. With the `Data` of the image, you reconstruct the `UIImage` and set it to your `UIImageView` you added in the storyboard.
+
+Before you can actually test this, you need to initiate an image capture request. 
+
+### Starting a Capture Request
+
+At the bottom of `ViewController.swift`, add the following extension:
+
+```swift
+// MARK: - @IBActions
+private extension ViewController {
+  @IBAction func capturePhoto() {
+
+    // 1
+    let captureSettings = AVCapturePhotoSettings()
+    captureSettings.isAutoStillImageStabilizationEnabled = true
+
+    // 2
+    output.capturePhoto(with: captureSettings, delegate: self)
+  }
+}
+```
+
+1. Each capture request requires a `AVCapturePhotoSettings` object. This is an object that encapsulates the context of the capture request. For instance, you can modify the behavior of the camera flash, or opt in or out of the image stabilization feature. Each one of these capture settings can only be used once. 
+
+2. With the capture settings, you initialize a new capture request.
+
+Build and run, demo complete!
+
 
