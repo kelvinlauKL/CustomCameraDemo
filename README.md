@@ -57,4 +57,6 @@ final class PreviewView: UIView {
 
 Using a setter, you will give your `videoPreviewLayer` the `AVCaptureSession` it needs to start showing your live camera feed.
 
+Before continuing, update the `UIView` in the storyboard to use this custom subclass:
 
+![previewView](/images/previewView.png)
