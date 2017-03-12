@@ -12,9 +12,10 @@ import AVFoundation
 final class PreviewView: UIView {
   
   // 1
-  var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-    return layer as! AVCaptureVideoPreviewLayer
+  override class var layerClass: AnyClass {
+    return AVCaptureVideoPreviewLayer.self
   }
+  
   
   // 2
   var session: AVCaptureSession? {
@@ -27,7 +28,7 @@ final class PreviewView: UIView {
   }
   
   // 3
-  override class var layerClass: AnyClass {
-    return AVCaptureVideoPreviewLayer.self
+  var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+    return layer as! AVCaptureVideoPreviewLayer
   }
 }
