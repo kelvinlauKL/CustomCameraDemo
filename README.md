@@ -244,4 +244,5 @@ private extension ViewController {
 
 Build and run, demo complete!
 
+> We took many shortcuts in this demo. For instance, the chance that the device's camera is not active is quite real. You should handle that properly. You can also attach different inputs to use the front camera instead of the back camera. You can also opt in for high resolution images. Refer to the WWDC 2016 session 501 for more details on more custom operations. But for now, this is a great start :)
 
