@@ -30,8 +30,12 @@ final class PreviewView: UIView {
     return AVCaptureVideoPreviewLayer.self
   }
 
-  
   // 2
+  var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+    return layer as! AVCaptureVideoPreviewLayer
+  }
+
+  // 3
   var session: AVCaptureSession? {
     get {
       return videoPreviewLayer.session
@@ -41,11 +45,15 @@ final class PreviewView: UIView {
     }
   }
   
-  // 3
-  var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-    return layer as! AVCaptureVideoPreviewLayer
-  }
 }
 ```
 
-1. 
+1. By default, `layerClass` returns a `CALayer`. In order to show what your iPhone's camera is viewing, you'll need to return a `AVCaptureVideoPreviewLayer` class instead. 
+
+2. You create a convenient computed property that returns that layer. 
+
+3. `AVCaptureVideoPreviewLayer` is responsible for showing the camera view, but it cannot do it alone. An `AVCaptureSession` is required to stream it live video data. Here, you create a property that allows `PreviewView` to accept a `AVCaptureSession` object.
+
+Using a setter, you will give your `videoPreviewLayer` the `AVCaptureSession` it needs to start showing your live camera feed.
+
+

@@ -16,8 +16,12 @@ final class PreviewView: UIView {
     return AVCaptureVideoPreviewLayer.self
   }
   
-  
   // 2
+  var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+    return layer as! AVCaptureVideoPreviewLayer
+  }
+  
+  // 3
   var session: AVCaptureSession? {
     get {
       return videoPreviewLayer.session
@@ -27,8 +31,5 @@ final class PreviewView: UIView {
     }
   }
   
-  // 3
-  var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-    return layer as! AVCaptureVideoPreviewLayer
-  }
+
 }
