@@ -12,14 +12,14 @@ import AVFoundation
 class ViewController: UIViewController {
   @IBOutlet fileprivate var previewView: PreviewView! {
     didSet {
-      previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-      previewView.clipsToBounds = true
+//      previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+//      previewView.clipsToBounds = true
     }
   }
   
   @IBOutlet fileprivate var imageView: UIImageView! {
     didSet {
-      imageView.clipsToBounds = true
+//      imageView.clipsToBounds = true
     }
   }
   
@@ -41,7 +41,7 @@ extension ViewController {
   
   private func setupCamera() {
     let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-    guard let input = try? AVCaptureDeviceInput(device: backCamera) else { return }
+    guard let input = try? AVCaptureDeviceInput(device: backCamera) else { fatalError("back camera not functional.") }
     session.addInput(input)
     session.addOutput(output)
     previewView.session = session

@@ -150,4 +150,8 @@ In your project's `info.plist`, add the `NSCameraUsageDescription` property and 
 
 ![NSCameraUsageDescription](images/cameraUsage.png)
 
+Build and run, and check out your screen:
+
+![firstScreen](images/firstBuildScreenshot.png)
+
 
