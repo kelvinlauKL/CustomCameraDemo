@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CustomCameraView" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IfX-Dr-gB2" customClass="PreviewView" customModule="CustomCameraView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="333.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gj0-xj-oeW">
+                                <rect key="frame" x="149" y="617" width="77" height="30"/>
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="capturePhoto" destination="BYZ-38-t0r" eventType="touchUpInside" id="R41-FI-03E"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KfZ-wd-0Wd">
+                                <rect key="frame" x="0.0" y="353.5" width="375" height="263.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="IfX-Dr-gB2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="Cpy-7H-QuA"/>
+                            <constraint firstItem="KfZ-wd-0Wd" firstAttribute="top" secondItem="IfX-Dr-gB2" secondAttribute="bottom" id="PkQ-Oc-rFg"/>
+                            <constraint firstItem="Gj0-xj-oeW" firstAttribute="top" secondItem="KfZ-wd-0Wd" secondAttribute="bottom" id="QFa-6m-iCM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Gj0-xj-oeW" secondAttribute="bottom" constant="20" id="X4e-Yq-hxZ"/>
+                            <constraint firstAttribute="trailing" secondItem="KfZ-wd-0Wd" secondAttribute="trailing" id="gd1-eI-8cl"/>
+                            <constraint firstItem="IfX-Dr-gB2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jZb-mn-1Dn"/>
+                            <constraint firstItem="KfZ-wd-0Wd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pDk-pD-vbv"/>
+                            <constraint firstItem="IfX-Dr-gB2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sMz-Ap-gUQ"/>
+                            <constraint firstItem="Gj0-xj-oeW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tMZ-hw-Spt"/>
+                            <constraint firstAttribute="trailing" secondItem="IfX-Dr-gB2" secondAttribute="trailing" id="zo2-WP-0Xo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="KfZ-wd-0Wd" id="lfz-YC-udS"/>
+                        <outlet property="previewView" destination="IfX-Dr-gB2" id="GOv-QE-DTq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
