@@ -152,6 +152,6 @@ In your project's `info.plist`, add the `NSCameraUsageDescription` property and 
 
 Build and run, and check out your screen:
 
-![firstScreen](images/firstBuildScreenshot.png)
+![firstScreen](images/firstBuildScreenshot.PNG)
 
 
