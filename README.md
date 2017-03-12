@@ -61,7 +61,7 @@ Before continuing, update the `UIView` in the storyboard to use this custom subc
 
 ![previewView](/images/previewView.png)
 
-### Part 1/3: Configuring the View Controller's Properties
+### Configuring the View Controller's Properties
 
 Open `ViewController.swift` and update the file to the following:
 
@@ -93,7 +93,7 @@ final class ViewController: UIViewController {
 
 3. `AVCapturePhotoOutput` is the actual class responsible for initiating a request for image capture. You create and hold a reference to that property here.
 
-### Part 2/3: Configuring the View Controller's Life Cycle
+### Configuring the View Controller's Life Cycle
 
 At the bottom of `ViewController.swift`, add the following extension:
 
@@ -141,5 +141,13 @@ extension ViewController {
 4. `session.stopRunning()` tells the `AVCaptureSession` to deactivate the iPhone's camera.
 
 > You always want to stop the session when you don't need the camera. The iPhone's camera uses alot of processing power and doesn't stop until it receives the `stopRunning` command. This means even if you segue to another screen in your app, it will continue to run unless `stopRunning` is called.
+
+### Configuring the Plist
+
+At this point, you've written enough code for the `AVCaptureVideoPreviewLayer` to show the camera feed. There's just one last step before you can test it out. Every app that wants to access the camera needs to ask the user for permission first. 
+
+In your project's `info.plist`, add the `NSCameraUsageDescription` property and give it a string that describes why your app needs to use the device camera:
+
+![NSCameraUsageDescription](images/cameraUsage.png)
 
 
