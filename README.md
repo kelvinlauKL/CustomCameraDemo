@@ -25,6 +25,7 @@ import UIKit
 import AVFoundation
 
 final class PreviewView: UIView {
+
   // 1
   override class var layerClass: AnyClass {
     return AVCaptureVideoPreviewLayer.self
